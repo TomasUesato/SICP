@@ -19,7 +19,6 @@
 (define (simpson-term f a k h)
   (f (+ a (* k h))))
 
-
 (define (simpsons-integral f a b n)
   (let ((h (/ (- b a) n)))
   (define (combined-term k)
