@@ -25,9 +25,3 @@
   (define (combined-term k)
     (* (simpson-coefficient k n) (simpson-term f a k h)))
   (* (/ h 3.0) (sum 0 n combined-term inc))))
-
-
-  
-
-        
-    
