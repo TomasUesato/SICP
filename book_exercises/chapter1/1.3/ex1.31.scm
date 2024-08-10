@@ -5,8 +5,15 @@
       1
       (* (term a) (product (next a) b term next))))
 
+(define (product-iterative a b term next)
+  (define (iter a result)
+    (if (> a b)
+        result
+        (iter (next a) (* a result))))
+  (iter a 1))
+
 (define (factorial n)
-  (product 1 n identity inc))
+  (product-iterative 1 n identity inc))
 
 (define (wallis-pi n)
   (define (term x)
