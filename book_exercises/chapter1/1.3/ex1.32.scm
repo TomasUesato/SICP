@@ -15,8 +15,14 @@
 (define (sum a b term next)
   (accumulate + 0 term a next b))
 
+(define (product a b term next)
+  (accumulate * 1 term a next b))
+
 (define (sum-integers a b)
   (sum a b identity inc))
+
+(define (product-integers a b)
+  (product a b identity inc))
 
 (define (identity x) x)
 
