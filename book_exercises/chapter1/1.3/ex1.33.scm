@@ -5,11 +5,20 @@
         ((filter a) (combiner (term a) (filtered-accumulate combiner null-value term (next a) next b filter)))
         (else (filtered-accumulate combiner null-value term (next a) next b filter))))
 
+
+(define (filtered-accumulate-iterative combiner null-value term a next b filter)
+  (define (iter a result)
+    (cond ((> a b) result)
+          ((filter a) (iter (next a) (combiner (term a) result)))
+          (else (iter (next a) result))))
+  (iter a null-value))
+                            
+  
 (define (sum-squares-of-primes a b)
   (sum a b square inc prime?))
 
 (define (sum a b term next filter)
-  (filtered-accumulate + 0 term a next b filter))
+  (filtered-accumulate-iterative + 0 term a next b filter))
 
 (define (prime? x)
   (if (= x 1)
