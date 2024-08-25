@@ -17,8 +17,21 @@
 (define (sum-squares-of-primes a b)
   (sum a b square inc prime?))
 
+(define (coprimes-product i n)
+  (define (coprime? a)
+    (= (gcd a n) 1))
+  (product i n identity inc coprime?))
+
+;Euclid's Algorithm
+(define (gcd a b)
+  (if (= b 0) (abs a)
+      (gcd b (modulo a b))))
+
 (define (sum a b term next filter)
   (filtered-accumulate-iterative + 0 term a next b filter))
+
+(define (product a b term next filter)
+  (filtered-accumulate-iterative * 1 term a next b filter))
 
 (define (prime? x)
   (if (= x 1)
